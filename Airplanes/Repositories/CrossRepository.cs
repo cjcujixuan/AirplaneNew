@@ -16,7 +16,7 @@ namespace Airplanes.Repositories
         public async Task<AirplaneOfAirport> GetAirplaneByAirportId(Guid id)
         {
             string sqlQuery = "SELECT Aid, Aname FROM Airport WHERE Aid = @Id;" +
-            "SELECT P.Pname FROM Airplane A, Flight_Information I " +
+            "SELECT P.Pname FROM Airplane P, Flight_information I " +
            "WHERE I.Aid = @Id AND P.Pid = I.Pid;";
             using (var connection = _dbContext.CreateConnection())
             {
@@ -31,7 +31,7 @@ namespace Airplanes.Repositories
         public async Task<AirportOfAirplane> GetAirportByAirplaneId(Guid id)
         {
             string sqlQuery = "SELECT Pid, Pname FROM Airplane WHERE Pid = @Id;" +
-            "SELECT A.Aname FROM Airport A, Flight_Information I " +
+            "SELECT A.Aname FROM Airport A, Flight_information I " +
            "WHERE I.Pid = @Id AND A.Aid = I.Aid;";
             using (var connection = _dbContext.CreateConnection())
             {
