@@ -1,5 +1,5 @@
 ﻿using Airplanes.Dtos;
-using Airports.Dtos;
+
 namespace Airplanes.Contracts
 {
     public interface ICross
@@ -8,5 +8,8 @@ namespace Airplanes.Contracts
         public Task<AirportOfAirplane> GetAirportByAirplaneId(Guid id);
 
         public Task<AirplaneOfAirport> GetAirplaneByAirportId(Guid id);
+        public Task<AirplaneDetailsOfAirport> GetAirplaneDetailsByAirportId(Guid id);
+
+        public Task<AirportDetailsOfAirplane> GetAirportDetailsByAirplaneId(Guid id);
     }
 }

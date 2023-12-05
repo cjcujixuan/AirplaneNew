@@ -14,17 +14,53 @@ namespace DepartmentStore.Controllers
             _logger = logger;
             _cross = cross;
         }
-        [HttpGet("AirplaneForAirport/{aid}")]
-        public async Task<IActionResult> GetAirportByAirplaneId(Guid aid)
+        [HttpGet("AirportForAirplane/{aid}")]
+        public async Task<IActionResult> GetAirplaneByAirportId(Guid aid)
         {
             try
             {
-                var counter = await _cross.GetAirportByAirplaneId(aid);
+                var airplane = await _cross.GetAirportByAirplaneId(aid);
                 return Ok(new
                 {
                     Success = true,
-                    Message = "輸出Airport的id,name且對應Airplane",
-                    counter
+                    Message = "輸出Airplane的id,name且對應Airport",
+                    airplane
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        [HttpGet("AirplaneDetailsForAirport/{aid}")]
+        public async Task<IActionResult> GetAirplaneDetailsByAirportId(Guid id)
+        {
+            try
+            {
+                var airplaneDetails = await _cross.GetAirplaneDetailsByAirportId(id);
+                return Ok(new
+                {
+                    Success = true,
+                    Message = "取得指定 id 詳細資料成功",
+                    Data = airplaneDetails
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        [HttpGet("AirportDetailsForAirplane/{pid}")]
+        public async Task<IActionResult> GetAirportDetailsByAirplaneId(Guid id)
+        {
+            try
+            {
+                var airportDetails = await _cross.GetAirportDetailsByAirplaneId(id);
+                return Ok(new
+                {
+                    Success = true,
+                    Message = "取得指定 id 詳細資料成功",
+                    Data = airportDetails
                 });
             }
             catch (Exception ex)
