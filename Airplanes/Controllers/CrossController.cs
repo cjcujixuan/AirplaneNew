@@ -32,7 +32,7 @@ namespace DepartmentStore.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        [HttpGet("AirplaneDetailsForAirport/{aid}")]
+        [HttpPost("AirplaneDetailsForAirport/{aid}")]
         public async Task<IActionResult> GetAirplaneDetailsByAirportId(Guid id)
         {
             try
@@ -50,7 +50,7 @@ namespace DepartmentStore.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        [HttpGet("AirportDetailsForAirplane/{pid}")]
+        [HttpPut("AirportDetailsForAirplane/{pid}")]
         public async Task<IActionResult> GetAirportDetailsByAirplaneId(Guid id)
         {
             try
